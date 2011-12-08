@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+current_directory="$(pwd)"
+
+if [[ -z "$1" ]]; then
+  echo "No project name was provided."
+  exit 1
+else
+  project_name="$1"
+fi
+
+project_directory="${current_directory}/${project_name}"
+if [[ -e "$project_directory" ]]; then
+  echo ""
+fi
