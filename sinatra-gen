@@ -22,3 +22,16 @@ if [[ -z "$*" ]]; then
   help
   exit 0
 fi
+
+while [[ "$1" == -* ]]; do
+  case "$1" in
+    -h|--help)
+      help
+      exit;;
+    -*)
+      echo ""
+      echo "  UNKNOWN ARGUMENT."
+      help
+      exit 1;;
+  esac
+done
