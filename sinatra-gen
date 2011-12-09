@@ -14,19 +14,13 @@ help() {
                     Mustache; optionally use ERB, Haml, or Slim.
     -s, --style     Specify a stylesheet preprocessor. Default is
                     Scss; optionally use Sass or LESS.
+
 HELP
 }
 
 current_directory="$(pwd)"
 
-if [[ -z "$1" ]]; then
-  echo "No project name was provided."
-  exit 1
-else
-  project_name="$1"
-fi
-
-project_directory="${current_directory}/${project_name}"
-if [[ -e "$project_directory" ]]; then
-  echo ""
+if [[ -z "$@" ]]; then
+  help
+  exit 0
 fi
