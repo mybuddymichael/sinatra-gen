@@ -18,9 +18,7 @@ help() {
 HELP
 }
 
-current_directory="$(pwd)"
-
-if [[ -z "$@" ]]; then
+if [[ -z "$*" ]]; then
   help
   exit 0
 fi
