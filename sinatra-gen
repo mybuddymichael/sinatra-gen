@@ -2,6 +2,21 @@
 
 set -e
 
+help() {
+  cat << HELP
+
+  USAGE: sinatra-gen [options] PROJECT_NAME
+
+  OPTIONS:
+    -h, --help      Display this help.
+    -d, --dry-run   Don't actually create any files.
+    -t, --template  Specify a template engine to use. Default is
+                    Mustache; optionally use ERB, Haml, or Slim.
+    -s, --style     Specify a stylesheet preprocessor. Default is
+                    Scss; optionally use Sass or LESS.
+HELP
+}
+
 current_directory="$(pwd)"
 
 if [[ -z "$1" ]]; then
