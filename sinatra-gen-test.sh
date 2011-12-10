@@ -47,3 +47,11 @@ it_creates_an_app_dot_rb_file() {
   grep AssetPack foo/app.rb
   grep mustache foo/app.rb
 }
+
+it_creates_a_gemfile() {
+  $sinatra_gen foo
+  test -f foo/Gemfile
+  grep sinatra foo/Gemfile
+  grep mustache foo/Gemfile
+  grep end foo/Gemfile
+}
