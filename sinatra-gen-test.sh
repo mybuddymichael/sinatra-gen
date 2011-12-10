@@ -18,8 +18,10 @@ it_displays_help_when_called_with_help() {
 
 it_fails_when_called_with_an_unknown_argument() {
   $sinatra_gen -f | grep UNKNOWN
-  $sinatra_gen -f | grep "\-f"
   $sinatra_gen --he | grep UNKNOWN
-  $sinatra_gen --he | grep "--he"
 }
+
+it_displays_the_unknown_argument_in_the_error_message() {
+  $sinatra_gen -f | grep "\-f"
+  $sinatra_gen --he | grep "--he"
 }
