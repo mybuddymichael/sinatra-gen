@@ -14,6 +14,9 @@ help() {
 HELP
 }
 
+red=$(printf "\033[31m")
+clr=$(printf "\033[m")
+
 if [[ -z "$*" ]]; then
   help
   exit
@@ -25,7 +28,7 @@ while [[ "$1" == -* ]]; do
       help
       exit;;
     -*)
-      echo "  ERROR: UNKNOWN ARGUMENT ($1)"
+      echo "  ${red}ERROR: UNKNOWN ARGUMENT ($1)${clr}"
       help
       exit 1;;
   esac
