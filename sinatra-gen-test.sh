@@ -39,3 +39,8 @@ it_does_not_create_a_directory_if_it_already_exists() {
   mkdir foo
   $sinatra_gen foo 2>&1 | grep EXISTS
 }
+
+it_creates_an_app_dot_rb_file() {
+  $sinatra_gen foo
+  test -f foo/app.rb
+}
