@@ -7,5 +7,7 @@ I noticed that I was constantly repeating the same steps to create new [Sinatra]
 projects, so I created this to automate the task. It's very specific, but
 contributions are welcome to improve and/or generalize functionality.
 
+Copyright © 2011 Michael Hanson; licensed under the MIT License.
+
 
 [Sinatra]: http://www.sinatrarb.com/
