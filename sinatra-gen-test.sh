@@ -62,3 +62,11 @@ it_creates_a_config_ru_file() {
   grep app.rb foo/config.ru
   grep App foo/config.ru
 }
+
+it_creates_a_layout_view() {
+  $sinatra_gen foo
+  file=foo/views/layout.rb
+  test -f $file
+  grep Layout $file
+  grep @title $file
+}

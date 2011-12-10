@@ -76,11 +76,30 @@ run App
 CONFIG
 }
 
+layout_rb() {
+  cat << LAYOUT
+class App
+  module Views
+    class Layout < Mustache
+
+      def title
+        @title || 'Hi!'
+      end
+
+    end
+  end
+end
+LAYOUT
+}
+
 create_project() {
   mkdir $1
+  mkdir -p $1/views
+
   app_rb > $1/app.rb
   gemfile > $1/Gemfile
   config_ru > $1/config.ru
+  layout_rb > $1/views/layout.rb
 }
 
 if [[ -z "$*" ]]; then
