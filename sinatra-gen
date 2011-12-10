@@ -17,9 +17,41 @@ help() {
 HELP
 }
 
+app_rb() {
+  cat << APP
+require 'bundler/setup'
+Bundler.require
+
+class App < Sinatra::Base
+
+  # AssetPack
+  register Sinatra::AssetPack
+
+  assets do
+    serve '/js', from: '/js'
+    js :app, '/js/app.js', [
+      '**/*.js' ]
+    css :app, [ '/style/*.css' ]
+  end
+
+  # Mustache
+  register Mustache::Sinatra
+  set :mustache, {
+    views: './views/',
+    templates: './templates/' }
+  require_relative 'views/layout'
+
+  get '/' do
+    mustache :index
+  end
+
+end
+APP
+}
+
 create_project() {
   mkdir $1
-  touch $1/app.rb
+  app_rb > $1/app.rb
 }
 
 if [[ -z "$*" ]]; then
