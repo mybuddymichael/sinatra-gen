@@ -31,9 +31,9 @@ class App < Sinatra::Base
     serve '/js', from: '/scripts'
     serve '/css', from: '/styles'
     js :app, '/js/app.js', [
-      '/scripts/**/*.js' ]
+      '**/*.js' ]
     css :app, '/css/app.css' [
-      '/styles/**/*.css' ]
+      '**/*.css' ]
   end
 
   # Mustache
