@@ -14,13 +14,12 @@ help() {
                     Mustache; optionally use ERB, Haml, or Slim.
     -s, --style     Specify a stylesheet preprocessor. Default is
                     Scss; optionally use Sass or LESS.
-
 HELP
 }
 
 if [[ -z "$*" ]]; then
   help
-  exit 0
+  exit
 fi
 
 while [[ "$1" == -* ]]; do
