@@ -4,6 +4,10 @@ describe 'sinatra-gen: generates a starter Sinatra project'
 
 sinatra_gen='./sinatra-gen'
 
+after() {
+  rm -rf foo
+}
+
 it_displays_help_when_called_without_arguments() {
   $sinatra_gen | grep USAGE
 }
