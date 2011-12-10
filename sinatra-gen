@@ -118,6 +118,12 @@ end
 INDEX
 }
 
+index_mustache() {
+  cat << INDEX
+<p>Hi, world!</p>
+INDEX
+}
+
 create_project() {
   mkdir $1
   mkdir -p $1/views
@@ -129,6 +135,7 @@ create_project() {
   layout_rb > $1/views/layout.rb
   layout_mustache > $1/templates/layout.mustache
   index_rb > $1/views/index.rb
+  index_mustache > $1/templates/index.mustache
 }
 
 if [[ -z "$*" ]]; then

@@ -87,3 +87,9 @@ it_creates_an_index_view() {
   grep Index $file
   grep end $file
 }
+
+it_creates_an_index_template() {
+  $sinatra_gen foo
+  file=foo/templates/index.mustache
+  test -f $file
+}
