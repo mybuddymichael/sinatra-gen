@@ -21,13 +21,13 @@ it_displays_help_when_called_with_help() {
 }
 
 it_fails_when_called_with_an_unknown_argument() {
-  $sinatra_gen -f | grep UNKNOWN
-  $sinatra_gen --he | grep UNKNOWN
+  $sinatra_gen -f 2>&1 | grep UNKNOWN
+  $sinatra_gen --he 2>&1 | grep UNKNOWN
 }
 
 it_displays_the_unknown_argument_in_the_error_message() {
-  $sinatra_gen -f | grep "\-f"
-  $sinatra_gen --he | grep "--he"
+  $sinatra_gen -f 2>&1 | grep "\-f"
+  $sinatra_gen --he 2>&1 | grep "--he"
 }
 
 it_creates_a_directory_with_the_name_provided() {
@@ -37,5 +37,5 @@ it_creates_a_directory_with_the_name_provided() {
 
 it_does_not_create_a_directory_if_it_already_exists() {
   mkdir foo
-  $sinatra_gen foo | grep EXISTS
+  $sinatra_gen foo 2>&1 | grep EXISTS
 }
