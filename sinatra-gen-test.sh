@@ -17,9 +17,6 @@ it_displays_help_when_called_with_help() {
 }
 
 it_fails_when_called_with_an_unknown_argument() {
-  echo $($sinatra_gen --he | head -n 3 ) | grep UNKNOWN
-}
-
-it_fails_when_called_with_an_unknown_argument_2() {
-  echo $($sinatra_gen -f | head -n 3 ) | grep UNKNOWN
+  echo $($sinatra_gen -f ) | grep UNKNOWN
+  echo $($sinatra_gen --he ) | grep UNKNOWN
 }
