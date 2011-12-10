@@ -33,3 +33,11 @@ while [[ "$1" == -* ]]; do
       exit 1;;
   esac
 done
+
+if [[ -d $1 ]]; then
+  echo "  ${red}ERROR: DIRECTORY $1 ALREADY EXISTS${clr}"
+  help
+  exit 1
+else
+  mkdir $1
+fi
