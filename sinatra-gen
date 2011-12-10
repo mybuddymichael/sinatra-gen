@@ -17,6 +17,10 @@ help() {
 HELP
 }
 
+create_project() {
+  mkdir $1
+  touch $1/app.rb
+}
 
 if [[ -z "$*" ]]; then
   help
@@ -42,6 +46,6 @@ if [[ -d $1 ]]; then
   help
   exit 1
 else
-  mkdir $1
+  create_project $1
   exit 0
 fi
