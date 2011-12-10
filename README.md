@@ -10,6 +10,8 @@ I noticed that I was constantly repeating the same steps to create new [Sinatra]
 projects, so I created this to automate the task. It's very specific, but
 contributions are welcome to improve and/or generalize functionality.
 
+To install, simply drop `sinatra-gen` somewhere in your `PATH`.
+
 Copyright © 2011 Michael Hanson; licensed under the MIT License.
 
 
