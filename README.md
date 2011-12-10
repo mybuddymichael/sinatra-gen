@@ -1,4 +1,5 @@
-## sinatra-gen
+sinatra-gen
+===========
 
 **sinatra-gen** is a simple command-line utility to generate a starter [Sinatra]
 project.
