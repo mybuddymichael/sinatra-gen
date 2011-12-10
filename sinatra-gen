@@ -28,6 +28,7 @@ while [[ "$1" == -* ]]; do
       help
       exit;;
     -*)
+      echo ""
       echo "  ${red}ERROR: UNKNOWN ARGUMENT ($1)${clr}" >&2
       help
       exit 1;;
@@ -35,6 +36,7 @@ while [[ "$1" == -* ]]; do
 done
 
 if [[ -d $1 ]]; then
+  echo ""
   echo "  ${red}ERROR: DIRECTORY $1 ALREADY EXISTS${clr}" >&2
   help
   exit 1
