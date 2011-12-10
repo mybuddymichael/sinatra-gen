@@ -79,3 +79,11 @@ it_creates_a_layout_template() {
   grep title $file
   grep yield $file
 }
+
+it_creates_an_index_view() {
+  $sinatra_gen foo
+  file=foo/views/index.rb
+  test -f $file
+  grep Index $file
+  grep end $file
+}

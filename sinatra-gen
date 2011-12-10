@@ -107,6 +107,17 @@ layout_mustache() {
 LAYOUT
 }
 
+index_rb() {
+  cat << INDEX
+class App
+  module Views
+    class Index < Layout
+    end
+  end
+end
+INDEX
+}
+
 create_project() {
   mkdir $1
   mkdir -p $1/views
@@ -117,6 +128,7 @@ create_project() {
   config_ru > $1/config.ru
   layout_rb > $1/views/layout.rb
   layout_mustache > $1/templates/layout.mustache
+  index_rb > $1/views/index.rb
 }
 
 if [[ -z "$*" ]]; then
