@@ -3,6 +3,7 @@
 set -e
 
 red=$(printf "\033[31m")
+grn=$(printf "\033[32m")
 clr=$(printf "\033[m")
 
 help() {
@@ -15,6 +16,11 @@ help() {
     -d, --dry-run   Don't actually create any files.
 
 HELP
+}
+
+create() {
+  $1 > $2
+  echo "  ${grn}create${clr} $2"
 }
 
 app_rb() {
@@ -130,13 +136,15 @@ create_project() {
   mkdir -p $1/views
   mkdir -p $1/templates
 
-  app_rb > $1/app.rb
-  gemfile > $1/Gemfile
-  config_ru > $1/config.ru
-  layout_rb > $1/views/layout.rb
-  layout_mustache > $1/templates/layout.mustache
-  index_rb > $1/views/index.rb
-  index_mustache > $1/templates/index.mustache
+  echo ""
+  create app_rb          $1/app.rb
+  create gemfile         $1/Gemfile
+  create config_ru       $1/config.ru
+  create layout_rb       $1/views/layout.rb
+  create layout_mustache $1/templates/layout.mustache
+  create index_rb        $1/views/index.rb
+  create index_mustache  $1/templates/index.mustache
+  echo ""
 }
 
 if [[ -z "$*" ]]; then
