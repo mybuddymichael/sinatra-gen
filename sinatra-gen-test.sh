@@ -44,5 +44,6 @@ it_creates_an_app_dot_rb_file() {
   $sinatra_gen foo
   test -f foo/app.rb
   grep Bundler foo/app.rb
+  grep AssetPack foo/app.rb
   grep mustache foo/app.rb
 }
