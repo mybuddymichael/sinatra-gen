@@ -28,10 +28,12 @@ class App < Sinatra::Base
   register Sinatra::AssetPack
 
   assets do
-    serve '/js', from: '/js'
+    serve '/js', from: '/scripts'
+    serve '/css', from: '/styles'
     js :app, '/js/app.js', [
-      '**/*.js' ]
-    css :app, [ '/style/*.css' ]
+      '/scripts/**/*.js' ]
+    css :app, '/css/app.css' [
+      '/styles/**/*.css' ]
   end
 
   # Mustache
