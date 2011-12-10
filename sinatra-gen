@@ -92,14 +92,31 @@ end
 LAYOUT
 }
 
+layout_mustache() {
+  cat << LAYOUT
+<!doctype html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {{{ yield }}}
+  </body>
+</html>
+LAYOUT
+}
+
 create_project() {
   mkdir $1
   mkdir -p $1/views
+  mkdir -p $1/templates
 
   app_rb > $1/app.rb
   gemfile > $1/Gemfile
   config_ru > $1/config.ru
   layout_rb > $1/views/layout.rb
+  layout_mustache > $1/templates/layout.mustache
 }
 
 if [[ -z "$*" ]]; then

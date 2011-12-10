@@ -70,3 +70,12 @@ it_creates_a_layout_view() {
   grep Layout $file
   grep @title $file
 }
+
+it_creates_a_layout_template() {
+  $sinatra_gen foo
+  file=foo/templates/layout.mustache
+  test -f $file
+  grep doctype $file
+  grep title $file
+  grep yield $file
+}
