@@ -56,15 +56,16 @@ gemfile() {
 source 'http://rubygems.org'
 
 gem 'sinatra', require: 'sinatra/base'
-gem 'mustache', require: 'mustache/sinatra'
 gem 'sinatra-assetpack', require: 'sinatra/assetpack',
   git: 'https://github.com/rstacruz/sinatra-assetpack.git'
+
+gem 'mustache', require: 'mustache/sinatra'
+gem 'coffee-script'
 
 group :development do
   gem 'guard'
   gem 'guard-livereload'
   gem 'rb-fsevent'
-  gem 'shotgun'
 end
 GEMFILE
 }
