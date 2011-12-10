@@ -55,3 +55,10 @@ it_creates_a_gemfile() {
   grep mustache foo/Gemfile
   grep end foo/Gemfile
 }
+
+it_creates_a_config_ru_file() {
+  $sinatra_gen foo
+  test -f foo/config.ru
+  grep app.rb foo/config.ru
+  grep App foo/config.ru
+}

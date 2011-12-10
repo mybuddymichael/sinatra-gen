@@ -69,10 +69,18 @@ end
 GEMFILE
 }
 
+config_ru() {
+  cat << CONFIG
+require './app.rb'
+run App
+CONFIG
+}
+
 create_project() {
   mkdir $1
   app_rb > $1/app.rb
   gemfile > $1/Gemfile
+  config_ru > $1/config.ru
 }
 
 if [[ -z "$*" ]]; then
