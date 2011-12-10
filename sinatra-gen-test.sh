@@ -43,4 +43,6 @@ it_does_not_create_a_directory_if_it_already_exists() {
 it_creates_an_app_dot_rb_file() {
   $sinatra_gen foo
   test -f foo/app.rb
+  grep Bundler foo/app.rb
+  grep mustache foo/app.rb
 }
