@@ -10,6 +10,7 @@ help() {
   OPTIONS:
     -h, --help      Display this help.
     -d, --dry-run   Don't actually create any files.
+
 HELP
 }
 
@@ -24,8 +25,7 @@ while [[ "$1" == -* ]]; do
       help
       exit;;
     -*)
-      echo ""
-      echo "  UNKNOWN ARGUMENT."
+      echo "  ERROR: UNKNOWN ARGUMENT ($1)"
       help
       exit 1;;
   esac
