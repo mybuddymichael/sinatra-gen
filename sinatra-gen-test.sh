@@ -45,6 +45,11 @@ it_prints_the_files_being_created() {
   sinatra-gen foo | grep create
 }
 
+it_does_not_create_if_dry_run() {
+  sinatra-gen -d foo | grep app.rb
+  test ! -d foo
+}
+
 it_creates_an_app_dot_rb_file() {
   sinatra-gen foo
   test -f foo/app.rb

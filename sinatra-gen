@@ -23,7 +23,10 @@ error() {
 }
 
 create() {
-  $1 > $2
+  if [[ -z $dry_run ]]; then
+    $1 > $2
+  fi
+
   echo "  ${grn}create${clr} $2"
 }
 
@@ -136,9 +139,11 @@ INDEX
 }
 
 create_project() {
-  mkdir $1
-  mkdir $1/views
-  mkdir $1/templates
+  if [[ -z $dry_run ]]; then
+    mkdir $1
+    mkdir $1/views
+    mkdir $1/templates
+  fi
 
   echo ""
   create app_rb          $1/app.rb
@@ -151,16 +156,14 @@ create_project() {
   echo ""
 }
 
-if [[ -z "$*" ]]; then
-  help
-  exit
-fi
-
 while [[ "$1" == -* ]]; do
   case "$1" in
     -h|--help)
       help
       exit;;
+    -d|--dry-run)
+      dry_run=1
+      shift;;
     -*)
       echo ""
       error "unknown argument ($1)"
@@ -169,7 +172,15 @@ while [[ "$1" == -* ]]; do
   esac
 done
 
-if [[ -d $1 ]]; then
+if [[ -z "$*" && -n "$dry_run" ]]; then
+  echo ""
+  error "--dry-run must be called with a project name"
+  help
+  exit 1
+elif [[ -z "$*" ]]; then
+  help
+  exit
+elif [[ -d $1 ]]; then
   echo ""
   error "directory $1 already exists"
   help
