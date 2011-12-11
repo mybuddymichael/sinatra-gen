@@ -133,8 +133,8 @@ INDEX
 
 create_project() {
   mkdir $1
-  mkdir -p $1/views
-  mkdir -p $1/templates
+  mkdir $1/views
+  mkdir $1/templates
 
   echo ""
   create app_rb          $1/app.rb
