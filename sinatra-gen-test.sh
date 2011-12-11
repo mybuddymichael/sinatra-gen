@@ -25,7 +25,7 @@ it_fails_when_called_with_an_unknown_argument() {
   $sinatra_gen --he 2>&1 | grep UNKNOWN
 }
 
-it_displays_the_unknown_argument_in_the_error_message() {
+it_displays_the_unknown_arg_with_the_error() {
   $sinatra_gen -f 2>&1 | grep "\-f"
   $sinatra_gen --he 2>&1 | grep "--he"
 }
@@ -35,7 +35,7 @@ it_creates_a_directory_with_the_name_provided() {
   test -d foo
 }
 
-it_does_not_create_a_directory_if_it_already_exists() {
+it_does_not_create_if_directory_already_exists() {
   mkdir foo
   $sinatra_gen foo 2>&1 | grep EXISTS
 }
