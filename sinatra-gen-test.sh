@@ -9,15 +9,15 @@ after() {
 }
 
 it_displays_help_when_called_without_arguments() {
-  $sinatra_gen | grep USAGE
+  $sinatra_gen | grep Usage
 }
 
 it_displays_help_when_called_with_h() {
-  $sinatra_gen -h | grep USAGE
+  $sinatra_gen -h | grep Usage
 }
 
 it_displays_help_when_called_with_help() {
-  $sinatra_gen --help | grep USAGE
+  $sinatra_gen --help | grep Usage
 }
 
 it_fails_when_called_with_an_unknown_argument() {

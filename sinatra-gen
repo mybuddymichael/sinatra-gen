@@ -9,9 +9,9 @@ clr=$(printf "\033[m")
 help() {
   cat << HELP
 
-  USAGE: sinatra-gen [options] PROJECT_NAME
+  Usage: sinatra-gen [options] PROJECT_NAME
 
-  OPTIONS:
+  Options:
     -h, --help      Display this help.
     -d, --dry-run   Don't actually create any files.
 
