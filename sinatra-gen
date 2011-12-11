@@ -18,6 +18,10 @@ help() {
 HELP
 }
 
+error() {
+  echo "  ${red}ERROR: $1${clr}" >&2
+}
+
 create() {
   $1 > $2
   echo "  ${grn}create${clr} $2"
@@ -159,7 +163,7 @@ while [[ "$1" == -* ]]; do
       exit;;
     -*)
       echo ""
-      echo "  ${red}ERROR: UNKNOWN ARGUMENT ($1)${clr}" >&2
+      error "unknown argument ($1)"
       help
       exit 1;;
   esac
@@ -167,7 +171,7 @@ done
 
 if [[ -d $1 ]]; then
   echo ""
-  echo "  ${red}ERROR: DIRECTORY $1 ALREADY EXISTS${clr}" >&2
+  error "directory $1 already exists"
   help
   exit 1
 else

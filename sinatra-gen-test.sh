@@ -21,8 +21,8 @@ it_displays_help_when_called_with_help() {
 }
 
 it_fails_when_called_with_an_unknown_argument() {
-  $sinatra_gen -f 2>&1 | grep UNKNOWN
-  $sinatra_gen --he 2>&1 | grep UNKNOWN
+  $sinatra_gen -f 2>&1 | grep unknown
+  $sinatra_gen --he 2>&1 | grep unknown
 }
 
 it_displays_the_unknown_arg_with_the_error() {
@@ -37,7 +37,7 @@ it_creates_a_directory_with_the_name_provided() {
 
 it_does_not_create_if_directory_already_exists() {
   mkdir foo
-  $sinatra_gen foo 2>&1 | grep EXISTS
+  $sinatra_gen foo 2>&1 | grep exists
 }
 
 it_prints_the_files_being_created() {
