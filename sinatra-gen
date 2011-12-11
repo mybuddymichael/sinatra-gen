@@ -9,7 +9,7 @@ clr=$(printf "\033[m")
 help() {
   cat << HELP
 
-  Usage: sinatra-gen [options] PROJECT_NAME
+  Usage: sinatra-gen [<options>] [<project-name>]
 
   Options:
     -h, --help      Display this help.
