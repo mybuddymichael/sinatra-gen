@@ -3,6 +3,7 @@
 describe 'sinatra-gen: generates a starter Sinatra project'
 
 sinatra_gen='./sinatra-gen'
+alias grep='grep -i'
 
 after() {
   rm -rf foo
