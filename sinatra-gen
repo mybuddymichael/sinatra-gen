@@ -23,19 +23,11 @@ error() {
 }
 
 create() {
-  [[ -z $2 ]] && local directory=1
-
-  if [[ -z "$directory" && -z "$dry_run" ]]; then
+  if [[ -z "$dry_run" ]]; then
+    mkdir -p ${2%/*}
     $1 > $2
   fi
-
-  if [[ -n "$directory" && -z "$dry_run" ]]; then
-    mkdir $1
-  fi
-
-  if [[ -z "$directory" ]]; then
-    echo "  ${grn}create${clr} $2"
-  fi
+  echo "  ${grn}create${clr} $2"
 }
 
 app_rb() {
@@ -147,10 +139,6 @@ INDEX
 }
 
 create_project() {
-  create $1
-  create $1/views
-  create $1/templates
-
   echo ""
   create app_rb          $1/app.rb
   create gemfile         $1/Gemfile
