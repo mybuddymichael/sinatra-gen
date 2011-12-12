@@ -31,6 +31,12 @@ it_displays_the_unknown_arg_with_the_error() {
   sinatra-gen --he 2>&1 | grep "--he"
 }
 
+it_always_displays_help_if_h_is_flagged() {
+  sinatra-gen -h -d foo | grep Usage
+  sinatra-gen -d -h foo | grep Usage
+  test ! -d foo
+}
+
 it_creates_a_directory_with_the_name_provided() {
   sinatra-gen foo
   test -d foo
