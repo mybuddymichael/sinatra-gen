@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 
+# **[sinatra-gen](https://github.com/mybuddymichael/sinatra-gen)** is a simple
+# utility for creating starter [Sinatra](http://www.sinatrarb.com/) projects. It
+# is written in bash, and has no other dependencies (not even Ruby).
+
+# ## The script
+
+# Exit the script if any function exits with a code other than 0.
 set -e
 
+# Some color variables that can be used easily in strings, i.e.
+# `"${red}ERROR${clr}"`.
 red=$(printf "\033[31m")
 grn=$(printf "\033[32m")
 clr=$(printf "\033[m")
 
+# The string of help text.
 help() {
   cat << HELP
 
@@ -18,10 +28,16 @@ help() {
 HELP
 }
 
+# A function for easy error printing. Shows the text as red and routes it to
+# `stderr`.
 error() {
   echo "  ${red}ERROR: $1${clr}" >&2
 }
 
+# Call `create()` with two parameters: `$1` is the function containing the
+# default text, and `$2` is the location for the output. It will automatically
+# create any necessary directories.  If called with the `-d` or `--dry-run`
+# flags, it only echoes the file to be created.
 create() {
   if [[ -z "$dry_run" ]]; then
     mkdir -p ${2%/*}
@@ -30,6 +46,9 @@ create() {
   echo "  ${grn}create${clr} $2"
 }
 
+# ### The files
+
+# `foo/app.rb`
 app_rb() {
   cat << APP
 require 'bundler/setup'
@@ -62,6 +81,7 @@ end
 APP
 }
 
+# `foo/Gemfile`
 gemfile() {
   cat << GEMFILE
 source 'http://rubygems.org'
@@ -81,6 +101,7 @@ end
 GEMFILE
 }
 
+# `foo/config.ru`
 config_ru() {
   cat << CONFIG
 require './app.rb'
@@ -88,6 +109,7 @@ run App
 CONFIG
 }
 
+# `foo/views/layout.rb`
 layout_rb() {
   cat << LAYOUT
 class App
@@ -104,6 +126,7 @@ end
 LAYOUT
 }
 
+# `foo/templates/layout.mustache`
 layout_mustache() {
   cat << LAYOUT
 <!doctype html>
@@ -119,6 +142,7 @@ layout_mustache() {
 LAYOUT
 }
 
+# `foo/views/index.rb`
 index_rb() {
   cat << INDEX
 class App
@@ -130,12 +154,15 @@ end
 INDEX
 }
 
+# `foo/templates/index.mustache`
 index_mustache() {
   cat << INDEX
 <p>Hi, world!</p>
 INDEX
 }
 
+# `create_project()` is called if valid parameters are passed to the script. It
+# actually creates the directory and files.
 create_project() {
   echo ""
   create app_rb          $1/app.rb
@@ -148,6 +175,7 @@ create_project() {
   echo ""
 }
 
+# Check the options given by the user.
 while [[ "$1" == -* ]]; do
   case "$1" in
     -h|--help)
@@ -164,19 +192,23 @@ while [[ "$1" == -* ]]; do
   esac
 done
 
+# If `-d` or `--dry-run` is called without a project name, abort the script.
 if [[ -z "$*" && -n "$dry_run" ]]; then
   echo ""
   error "--dry-run must be called with a project name"
   help
   exit 1
+# If the script is activated without any parameters, display the help.
 elif [[ -z "$*" ]]; then
   help
   exit
+# If the project name already exists as a directory, abort the script.
 elif [[ -d $1 ]]; then
   echo ""
   error "directory $1 already exists"
   help
   exit 1
+# Or, if parameters are valid, run `create_project()`.
 else
   create_project $1
   exit
