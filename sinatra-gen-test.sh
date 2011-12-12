@@ -58,20 +58,23 @@ it_does_not_create_if_dry_run() {
 
 it_creates_an_app_dot_rb_file() {
   sinatra-gen foo
-  test -f foo/app.rb
-  grep Sinatra::Base foo/app.rb
+  file=foo/app.rb
+  test -f $file
+  grep Sinatra::Base $file
 }
 
 it_creates_a_gemfile() {
   sinatra-gen foo
-  test -f foo/Gemfile
-  grep sinatra/base foo/Gemfile
+  file=foo/Gemfile
+  test -f $file
+  grep sinatra/base $file
 }
 
 it_creates_a_config_ru_file() {
   sinatra-gen foo
-  test -f foo/config.ru
-  grep app.rb foo/config.ru
+  file=foo/config.ru
+  test -f $file
+  grep app.rb $file
 }
 
 it_creates_a_layout_view() {
