@@ -15,7 +15,7 @@ contributions are welcome to improve and/or generalize functionality.
 **sinatra-gen** is just a one-file bash script. It doesn't even require Ruby.
 This means you can just drop it in your path and use it. It's fast and simple.
 
-Tested with bash 3.2.
+Tested with bash 3.2.48 and zsh 4.3.11.
 
 Copyright © 2011 Michael Hanson; licensed under the MIT License.
 
