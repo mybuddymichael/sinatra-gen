@@ -104,3 +104,10 @@ it_creates_an_index_template() {
   test -f $file
   grep world $file
 }
+
+it_creates_a_test_helper_file() {
+  sinatra-gen foo
+  file=foo/test/test_helper.rb
+  test -f $file
+  grep require_relative $file
+}

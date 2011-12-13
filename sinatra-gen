@@ -161,6 +161,23 @@ index_mustache() {
 INDEX
 }
 
+test_helper() {
+  cat << HELPER
+require_relative '../app'
+Bundler.require :test
+
+class App
+  class Test < MiniTest::Unit::TestCase
+
+    def self.test(name, &block)
+      define_method("test_#{name.gsub(/\W/,'_')}", &block) if block
+    end
+
+  end
+end
+HELPER
+}
+
 # `create_project()` is called if valid parameters are passed to the script. It
 # actually creates the directory and files.
 create_project() {
@@ -172,6 +189,7 @@ create_project() {
   create layout_mustache $1/templates/layout.mustache
   create index_rb        $1/views/index.rb
   create index_mustache  $1/templates/index.mustache
+  create test_helper     $1/test/test_helper.rb
   echo ""
 }
 
