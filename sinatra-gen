@@ -37,8 +37,8 @@ Bundler.require
 
 class App < Sinatra::Base
 
-  # AssetPack
   register Sinatra::AssetPack
+  register Mustache::Sinatra
 
   assets do
     serve '/js', from: '/scripts'
@@ -49,8 +49,6 @@ class App < Sinatra::Base
       '**/*.css' ]
   end
 
-  # Mustache
-  register Mustache::Sinatra
   set :mustache, {
     views: './views/',
     templates: './templates/' }
