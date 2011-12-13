@@ -166,6 +166,7 @@ index_mustache() {
 INDEX
 }
 
+# `foo/test/test_helper.rb`
 test_helper() {
   cat << HELPER
 require_relative '../app'
@@ -183,6 +184,7 @@ end
 HELPER
 }
 
+# `foo/test/routes_test.rb`
 routes_test() {
   cat << ROUTES
 require_relative 'test_helper'
