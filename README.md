@@ -12,7 +12,7 @@ contributions are welcome to improve and/or generalize functionality.
 
 ### To install, simply drop 'sinatra-gen' somewhere in your 'PATH'.
 
-**sinatra-gen** is just a one-file bash script. It doesn't even require Ruby.
+**sinatra-gen** is just a single-file bash script. It doesn't even require Ruby.
 This means you can just drop it in your path and use it. It's fast and simple.
 
 Tested with bash 3.2.48 and zsh 4.3.11.
