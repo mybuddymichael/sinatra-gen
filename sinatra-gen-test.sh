@@ -111,3 +111,10 @@ it_creates_a_test_helper_file() {
   test -f $file
   grep require_relative $file
 }
+
+it_creates_a_routes_test_file() {
+  sinatra-gen foo
+  file=foo/test/routes_test.rb
+  test -f $file
+  grep require_relative $file
+}

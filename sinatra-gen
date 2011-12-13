@@ -183,6 +183,32 @@ end
 HELPER
 }
 
+routes_test() {
+  cat << ROUTES
+require_relative 'test_helper'
+
+class RoutesTest < App::Test
+
+  include Rack::Test::Methods
+  
+  def app
+    App
+  end
+
+  test 'get returns hi world' do
+    get '/'
+    assert last_response.body.include? 'Hi, world'
+  end
+
+  test 'get returns 200 status' do
+    get '/'
+    assert_equal 200, last_response.status
+  end
+
+end
+ROUTES
+}
+
 # `create_project()` is called if valid parameters are passed to the script. It
 # actually creates the directory and files.
 create_project() {
@@ -195,6 +221,7 @@ create_project() {
   create index_rb        $1/views/index.rb
   create index_mustache  $1/templates/index.mustache
   create test_helper     $1/test/test_helper.rb
+  create routes_test     $1/test/routes_test.rb
   echo ""
 }
 
