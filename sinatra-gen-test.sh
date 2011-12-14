@@ -5,6 +5,11 @@ describe 'sinatra-gen: generates a starter Sinatra project'
 alias sinatra-gen='./sinatra-gen'
 alias grep='grep -i'
 
+check() {
+  test -f $1
+  grep $2 $1
+}
+
 after() {
   rm -rf foo
 }
@@ -59,62 +64,53 @@ it_does_not_create_if_dry_run() {
 it_creates_an_app_dot_rb_file() {
   sinatra-gen foo
   file=foo/app.rb
-  test -f $file
-  grep Sinatra::Base $file
+  check $file Sinatra::Base
 }
 
 it_creates_a_gemfile() {
   sinatra-gen foo
   file=foo/Gemfile
-  test -f $file
-  grep sinatra/base $file
+  check $file sinatra/base
 }
 
 it_creates_a_config_ru_file() {
   sinatra-gen foo
   file=foo/config.ru
-  test -f $file
-  grep app.rb $file
+  check $file app.rb
 }
 
 it_creates_a_layout_view() {
   sinatra-gen foo
   file=foo/views/layout.rb
-  test -f $file
-  grep @title $file
+  check $file @title
 }
 
 it_creates_a_layout_template() {
   sinatra-gen foo
   file=foo/templates/layout.mustache
-  test -f $file
-  grep yield $file
+  check $file yield
 }
 
 it_creates_an_index_view() {
   sinatra-gen foo
   file=foo/views/index.rb
-  test -f $file
-  grep Index $file
+  check $file Index
 }
 
 it_creates_an_index_template() {
   sinatra-gen foo
   file=foo/templates/index.mustache
-  test -f $file
-  grep world $file
+  check $file world
 }
 
 it_creates_a_test_helper_file() {
   sinatra-gen foo
   file=foo/test/test_helper.rb
-  test -f $file
-  grep require_relative $file
+  check $file require_relative
 }
 
 it_creates_a_routes_test_file() {
   sinatra-gen foo
   file=foo/test/routes_test.rb
-  test -f $file
-  grep require_relative $file
+  check $file require_relative
 }
