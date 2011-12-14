@@ -9,12 +9,6 @@
 # Exit the script if any function exits with a code other than 0.
 set -e
 
-# Some color variables that can be used easily in strings, i.e.
-# `"${red}ERROR${clr}"`.
-red=$(printf "\033[31m")
-grn=$(printf "\033[32m")
-clr=$(printf "\033[m")
-
 # The string of help text.
 help() {
   cat << HELP
@@ -26,24 +20,6 @@ help() {
     -d, --dry-run   Don't actually create any files.
 
 HELP
-}
-
-# A function for easy error printing. Shows the text as red and routes it to
-# `stderr`.
-error() {
-  echo "  ${red}ERROR: $1${clr}" >&2
-}
-
-# Call `create()` with two parameters: `$1` is the function containing the
-# default text, and `$2` is the location for the output. It will automatically
-# create any necessary directories.  If called with the `-d` or `--dry-run`
-# flags, it only echoes the file to be created.
-create() {
-  if [[ -z "$dry_run" ]]; then
-    mkdir -p ${2%/*}
-    $1 > $2
-  fi
-  echo "  ${grn}create${clr} $2"
 }
 
 # ### The files
@@ -209,6 +185,30 @@ class RoutesTest < App::Test
 
 end
 ROUTES
+}
+
+# Some color variables that can be used easily in strings, i.e.
+# `"${red}ERROR${clr}"`.
+red=$(printf "\033[31m")
+grn=$(printf "\033[32m")
+clr=$(printf "\033[m")
+
+# A function for easy error printing. Shows the text as red and routes it to
+# `stderr`.
+error() {
+  echo "  ${red}ERROR: $1${clr}" >&2
+}
+
+# Call `create()` with two parameters: `$1` is the function containing the
+# default text, and `$2` is the location for the output. It will automatically
+# create any necessary directories.  If called with the `-d` or `--dry-run`
+# flags, it only echoes the file to be created.
+create() {
+  if [[ -z "$dry_run" ]]; then
+    mkdir -p ${2%/*}
+    $1 > $2
+  fi
+  echo "  ${grn}create${clr} $2"
 }
 
 # `create_project()` is called if valid parameters are passed to the script. It
