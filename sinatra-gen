@@ -19,6 +19,11 @@ help() {
     -h, --help      Display this help.
     -d, --dry-run   Don't actually create any files.
 
+  Examples:
+    sinatra-gen foo
+    sinatra-gen --help
+    sinatra-gen -d foo
+
 HELP
 }
 
