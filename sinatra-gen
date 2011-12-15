@@ -45,7 +45,7 @@ class App < Sinatra::Base
     serve '/css', from: '/styles'
     js :app, '/js/app.js', [
       '**/*.js' ]
-    css :app, '/css/app.css' [
+    css :app, '/css/app.css', [
       '**/*.css' ]
   end
 
