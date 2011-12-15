@@ -114,3 +114,10 @@ it_creates_a_routes_test_file() {
   file=foo/test/routes_test.rb
   check $file require_relative
 }
+
+it_passes_rack_tests() {
+  sinatra-gen foo
+  cd foo
+  bundle install
+  test -z "$(bundle exec ruby test/routes_test.rb | grep 'Failure:')"
+}
