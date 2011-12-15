@@ -18,11 +18,13 @@ help() {
   Options:
     -h, --help      Display this help.
     -d, --dry-run   Don't actually create any files.
+        --pride     Use 'minitest/pride' gem for tests.
 
   Examples:
     sinatra-gen foo
     sinatra-gen --help
     sinatra-gen -d foo
+    sinatra-gen --pride foo
 
 HELP
 }
