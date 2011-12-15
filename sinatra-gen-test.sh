@@ -58,6 +58,7 @@ it_prints_the_files_being_created() {
 
 it_does_not_create_if_dry_run() {
   sinatra-gen -d foo | grep app.rb
+  sinatra-gen -d --pride foo | grep app.rb
   test ! -d foo
 }
 
