@@ -115,6 +115,16 @@ it_creates_a_routes_test_file() {
   check $file require_relative
 }
 
+it_does_not_add_pride_if_not_flagged() {
+  sinatra-gen foo
+  test -z "$(grep pride foo/Gemfile)"
+}
+
+it_adds_pride_if_flagged() {
+  sinatra-gen --pride foo
+  check foo/Gemfile pride
+}
+
 it_passes_rack_tests() {
   sinatra-gen foo
   cd foo

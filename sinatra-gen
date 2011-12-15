@@ -75,7 +75,7 @@ gem 'mustache', require: 'mustache/sinatra'
 gem 'coffee-script'
 
 group :test do
-  gem 'minitest', require: 'minitest/autorun'
+  gem 'minitest', require: 'minitest/autorun'${pride}
   gem 'rack-test', require: 'rack/test'
 end
 
@@ -243,6 +243,9 @@ while [[ "$1" == -* ]]; do
       exit;;
     -d|--dry-run)
       dry_run=1
+      shift;;
+    --pride)
+      pride=$'\n  gem \'minitest\', require: \'minitest/pride\''
       shift;;
     -*)
       echo ""
