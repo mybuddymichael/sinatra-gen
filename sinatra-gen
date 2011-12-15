@@ -66,6 +66,7 @@ class App < Sinatra::Base
     mustache :index
   end
 
+  run! if app_file == \$0
 end
 APP
 }
