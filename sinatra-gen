@@ -39,6 +39,8 @@ Bundler.require
 
 class App < Sinatra::Base
 
+  set :root, File.dirname(__FILE__)
+
   register Sinatra::AssetPack
   register Mustache::Sinatra
 
@@ -55,6 +57,10 @@ class App < Sinatra::Base
     views: './views/',
     templates: './templates/' }
   require_relative 'views/layout'
+
+  set :scss, {
+    load_paths: [ "#{root}/styles" ],
+    cache: false }
 
   get '/' do
     mustache :index
