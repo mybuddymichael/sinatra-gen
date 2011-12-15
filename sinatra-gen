@@ -231,6 +231,8 @@ create_project() {
   create test_helper     $1/test/test_helper.rb
   create routes_test     $1/test/routes_test.rb
   echo ""
+  echo "  ${mgn}Be sure to run \`bundle install\` to install the gems in Gemfile!${clr}"
+  echo ""
 }
 
 # Check the options given by the user.
