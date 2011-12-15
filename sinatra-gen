@@ -75,6 +75,7 @@ gem 'sinatra-assetpack', require: 'sinatra/assetpack',
 
 gem 'mustache', require: 'mustache/sinatra'
 gem 'coffee-script'
+gem 'sass'
 
 group :test do
   gem 'minitest', require: 'minitest/autorun'${pride}
