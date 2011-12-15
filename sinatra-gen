@@ -24,7 +24,6 @@ help() {
     sinatra-gen foo
     sinatra-gen --help
     sinatra-gen -d foo
-    sinatra-gen --pride foo
 
 HELP
 }
