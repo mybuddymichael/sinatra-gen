@@ -130,5 +130,5 @@ it_passes_rack_tests() {
   sinatra-gen foo
   cd foo
   bundle install
-  test -z "$(bundle exec ruby test/routes_test.rb | grep 'Failure:')"
+  test -z "$(bundle exec ruby test/routes_test.rb | grep 'Failure:\|Error:')"
 }
