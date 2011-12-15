@@ -116,6 +116,12 @@ it_creates_a_routes_test_file() {
   check $file require_relative
 }
 
+it_creates_reset_scss() {
+  sinatra-gen foo
+  file=foo/styles/reset.scss
+  check $file body
+}
+
 it_does_not_add_pride_if_not_flagged() {
   sinatra-gen foo
   test -z "$(grep pride foo/Gemfile)"

@@ -157,6 +157,54 @@ index_mustache() {
 INDEX
 }
 
+# `foo/styles/reset.scss`
+reset_scss() {
+  cat << RESET
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+RESET
+}
+
 # `foo/test/test_helper.rb`
 test_helper() {
   cat << HELPER
@@ -196,6 +244,12 @@ class RoutesTest < App::Test
   test 'get returns 200 status' do
     get '/'
     assert_equal 200, last_response.status
+  end
+
+  test 'can access reset.css' do
+    get '/css/reset.css'
+    assert_equal 200, last_response.status
+    assert last_response.body.include? 'acronym'
   end
 
 end
@@ -238,6 +292,7 @@ create_project() {
   create layout_mustache $1/templates/layout.mustache
   create index_rb        $1/views/index.rb
   create index_mustache  $1/templates/index.mustache
+  create reset_scss      $1/styles/reset.scss
   create test_helper     $1/test/test_helper.rb
   create routes_test     $1/test/routes_test.rb
   echo ""
