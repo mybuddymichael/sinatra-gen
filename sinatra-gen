@@ -196,6 +196,7 @@ ROUTES
 # `"${red}ERROR${clr}"`.
 red=$(printf "\033[31m")
 grn=$(printf "\033[32m")
+mgn=$(printf "\033[35m")
 clr=$(printf "\033[m")
 
 # A function for easy error printing. Shows the text as red and routes it to
