@@ -9,7 +9,8 @@
 # Exit the script if any function exits with a code other than 0.
 set -e
 
-# The string of help text.
+# The string of help text, displayed if `-h` or `--help` are flagged or if
+# `sinatra-gen` is called without any arguments.
 help() {
   cat << HELP
 
@@ -29,6 +30,8 @@ HELP
 }
 
 # ### The files
+# These functions contain the text that will be added to files created by
+# `sinatra-gen`.
 
 # `foo/app.rb`
 app_rb() {
