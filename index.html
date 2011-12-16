@@ -105,6 +105,11 @@ app_rb<span class="o">()</span> <span class="o">{</span>
 <span class="s">    load_paths: [ &quot;#{root}/styles&quot; ],</span>
 <span class="s">    cache: false }</span>
 
+<span class="s">  before do</span>
+<span class="s">    @css = css :app</span>
+<span class="s">    @js  = js  :app</span>
+<span class="s">  end</span>
+
 <span class="s">  get &#39;/&#39; do</span>
 <span class="s">    mustache :index</span>
 <span class="s">  end</span>
@@ -124,6 +129,8 @@ gemfile<span class="o">()</span> <span class="o">{</span>
 <span class="s">source &#39;http://rubygems.org&#39;</span>
 
 <span class="s">gem &#39;sinatra&#39;, require: &#39;sinatra/base&#39;</span>
+<span class="s">gem &#39;thin&#39;</span>
+
 <span class="s">gem &#39;sinatra-assetpack&#39;, require: &#39;sinatra/assetpack&#39;,</span>
 <span class="s">  git: &#39;https://github.com/rstacruz/sinatra-assetpack.git&#39;</span>
 
@@ -142,6 +149,17 @@ gemfile<span class="o">()</span> <span class="o">{</span>
 <span class="s">  gem &#39;rb-fsevent&#39;</span>
 <span class="s">end</span>
 <span class="s">GEMFILE</span>
+<span class="o">}</span>
+
+</pre></div></td></tr><tr><td class=docs>
+
+<p><code>foo/Procfile</code></p>
+
+</td><td class=code><div class=highlight><pre>
+procfile<span class="o">()</span> <span class="o">{</span>
+  cat <span class="s">&lt;&lt; PROCFILE</span>
+<span class="s">web: bundle exec ruby app.rb -p \$PORT</span>
+<span class="s">PROCFILE</span>
 <span class="o">}</span>
 
 </pre></div></td></tr><tr><td class=docs>
@@ -171,6 +189,14 @@ layout_rb<span class="o">()</span> <span class="o">{</span>
 <span class="s">        @title || &#39;Hi!&#39;</span>
 <span class="s">      end</span>
 
+<span class="s">      def css</span>
+<span class="s">        @css</span>
+<span class="s">      end</span>
+
+<span class="s">      def js</span>
+<span class="s">        @js</span>
+<span class="s">      end</span>
+
 <span class="s">    end</span>
 <span class="s">  end</span>
 <span class="s">end</span>
@@ -189,6 +215,8 @@ layout_mustache<span class="o">()</span> <span class="o">{</span>
 <span class="s">  &lt;head&gt;</span>
 <span class="s">    &lt;meta charset=utf-8 /&gt;</span>
 <span class="s">    &lt;title&gt;{{ title }}&lt;/title&gt;</span>
+<span class="s">    {{{ css }}}</span>
+<span class="s">    {{{ js }}}</span>
 <span class="s">  &lt;/head&gt;</span>
 <span class="s">  &lt;body&gt;</span>
 <span class="s">    {{{ yield }}}</span>
@@ -382,6 +410,7 @@ create_project<span class="o">()</span> <span class="o">{</span>
   <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
   create app_rb          <span class="nv">$1</span>/app.rb
   create gemfile         <span class="nv">$1</span>/Gemfile
+  create procfile        <span class="nv">$1</span>/Procfile
   create config_ru       <span class="nv">$1</span>/config.ru
   create layout_rb       <span class="nv">$1</span>/views/layout.rb
   create layout_mustache <span class="nv">$1</span>/templates/layout.mustache
