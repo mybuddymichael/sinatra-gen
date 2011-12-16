@@ -74,6 +74,12 @@ it_creates_a_gemfile() {
   check $file sinatra/base
 }
 
+it_creates_a_procfile() {
+   sinatra-gen foo
+   file=foo/Procfile
+   check $file bundle
+}
+
 it_creates_a_config_ru_file() {
   sinatra-gen foo
   file=foo/config.ru
