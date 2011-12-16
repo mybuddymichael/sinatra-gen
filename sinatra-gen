@@ -84,6 +84,8 @@ gemfile() {
 source 'http://rubygems.org'
 
 gem 'sinatra', require: 'sinatra/base'
+gem 'thin'
+
 gem 'sinatra-assetpack', require: 'sinatra/assetpack',
   git: 'https://github.com/rstacruz/sinatra-assetpack.git'
 
