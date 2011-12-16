@@ -64,6 +64,11 @@ class App < Sinatra::Base
     load_paths: [ "#{root}/styles" ],
     cache: false }
 
+  before do
+    @css = css :app
+    @js  = js  :app
+  end
+
   get '/' do
     mustache :index
   end
@@ -118,6 +123,14 @@ class App
         @title || 'Hi!'
       end
 
+      def css
+        @css
+      end
+
+      def js
+        @js
+      end
+
     end
   end
 end
@@ -132,6 +145,8 @@ layout_mustache() {
   <head>
     <meta charset=utf-8 />
     <title>{{ title }}</title>
+    {{{ css }}}
+    {{{ js }}}
   </head>
   <body>
     {{{ yield }}}
