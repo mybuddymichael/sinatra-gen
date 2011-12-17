@@ -58,7 +58,6 @@ it_prints_the_files_being_created() {
 
 it_does_not_create_if_dry_run() {
   sinatra-gen -d foo | grep app.rb
-  sinatra-gen -d --pride foo | grep app.rb
   test ! -d foo
 }
 
@@ -126,16 +125,6 @@ it_creates_reset_scss() {
   sinatra-gen foo
   file=foo/styles/reset.scss
   check $file body
-}
-
-it_does_not_add_pride_if_not_flagged() {
-  sinatra-gen foo
-  test -z "$(grep pride foo/Gemfile)"
-}
-
-it_adds_pride_if_flagged() {
-  sinatra-gen --pride foo
-  check foo/Gemfile pride
 }
 
 it_passes_rack_tests() {
