@@ -15,9 +15,11 @@ contributions are welcome to improve and/or generalize functionality.
 **sinatra-gen** is just a single-file bash script. It doesn't even require Ruby.
 This means you can just drop it in your path and use it. It's fast and simple.
 
-Tested with bash 3.2.48 and zsh 4.3.11.
+Tested with bash 3.2.48 and zsh 4.3.11. To run the tests, you'll need to install
+[roundup].
 
 Copyright © 2011 Michael Hanson; licensed under the MIT License.
 
 
 [Sinatra]: http://www.sinatrarb.com/
+[roundup]: https://github.com/bmizerany/roundup
