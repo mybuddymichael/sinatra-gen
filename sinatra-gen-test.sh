@@ -127,6 +127,12 @@ it_creates_reset_scss() {
   check $file body
 }
 
+it_creates_main_coffee() {
+  sinatra-gen foo
+  file=foo/scripts/main.coffee
+  test -f $file
+}
+
 it_passes_rack_tests() {
   sinatra-gen foo
   cd foo

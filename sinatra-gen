@@ -231,6 +231,12 @@ table {
 RESET
 }
 
+# `foo/scripts/main.coffee`
+main_coffee() {
+  cat << MAIN
+MAIN
+}
+
 # `foo/test/test_helper.rb`
 test_helper() {
   cat << HELPER
@@ -278,6 +284,11 @@ class RoutesTest < App::Test
     assert last_response.body.include? 'acronym'
   end
 
+  test 'main.js status is 200' do
+    get '/js/main.js'
+    assert_equal 200, last_response.status
+  end
+
 end
 ROUTES
 }
@@ -320,6 +331,7 @@ create_project() {
   create index_rb        $1/views/index.rb
   create index_mustache  $1/templates/index.mustache
   create reset_scss      $1/styles/reset.scss
+  create main_coffee     $1/scripts/main.coffee
   create test_helper     $1/test/test_helper.rb
   create routes_test     $1/test/routes_test.rb
   echo ""
