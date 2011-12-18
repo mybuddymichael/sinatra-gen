@@ -51,7 +51,6 @@ is written in bash, and has no other dependencies (not even Ruby).</p>
 <span class="s">  Options:</span>
 <span class="s">    -h, --help      Display this help.</span>
 <span class="s">    -d, --dry-run   Don&#39;t actually create any files.</span>
-<span class="s">        --pride     Use &#39;minitest/pride&#39; gem for tests.</span>
 
 <span class="s">  Examples:</span>
 <span class="s">    sinatra-gen foo</span>
@@ -139,7 +138,8 @@ gemfile<span class="o">()</span> <span class="o">{</span>
 <span class="s">gem &#39;sass&#39;</span>
 
 <span class="s">group :test do</span>
-<span class="s">  gem &#39;minitest&#39;, require: &#39;minitest/autorun&#39;${pride}</span>
+<span class="s">  gem &#39;minitest&#39;, require: &#39;minitest/autorun&#39;</span>
+<span class="s">  gem &#39;minitest&#39;, require: &#39;minitest/pride&#39;</span>
 <span class="s">  gem &#39;rack-test&#39;, require: &#39;rack/test&#39;</span>
 <span class="s">end</span>
 
@@ -306,6 +306,16 @@ reset_scss<span class="o">()</span> <span class="o">{</span>
 
 </pre></div></td></tr><tr><td class=docs>
 
+<p><code>foo/scripts/main.coffee</code></p>
+
+</td><td class=code><div class=highlight><pre>
+main_coffee<span class="o">()</span> <span class="o">{</span>
+  cat <span class="s">&lt;&lt; MAIN</span>
+<span class="s">MAIN</span>
+<span class="o">}</span>
+
+</pre></div></td></tr><tr><td class=docs>
+
 <p><code>foo/test/test_helper.rb</code></p>
 
 </td><td class=code><div class=highlight><pre>
@@ -357,6 +367,11 @@ routes_test<span class="o">()</span> <span class="o">{</span>
 <span class="s">    get &#39;/css/reset.css&#39;</span>
 <span class="s">    assert_equal 200, last_response.status</span>
 <span class="s">    assert last_response.body.include? &#39;acronym&#39;</span>
+<span class="s">  end</span>
+
+<span class="s">  test &#39;main.js status is 200&#39; do</span>
+<span class="s">    get &#39;/js/main.js&#39;</span>
+<span class="s">    assert_equal 200, last_response.status</span>
 <span class="s">  end</span>
 
 <span class="s">end</span>
@@ -417,6 +432,7 @@ create_project<span class="o">()</span> <span class="o">{</span>
   create index_rb        <span class="nv">$1</span>/views/index.rb
   create index_mustache  <span class="nv">$1</span>/templates/index.mustache
   create reset_scss      <span class="nv">$1</span>/styles/reset.scss
+  create main_coffee     <span class="nv">$1</span>/scripts/main.coffee
   create test_helper     <span class="nv">$1</span>/test/test_helper.rb
   create routes_test     <span class="nv">$1</span>/test/routes_test.rb
   <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
@@ -436,9 +452,6 @@ create_project<span class="o">()</span> <span class="o">{</span>
 <span class="nb">      exit</span>;;
     -d|--dry-run<span class="o">)</span>
       <span class="nv">dry_run</span><span class="o">=</span>1
-      <span class="nb">shift</span>;;
-    --pride<span class="o">)</span>
-      <span class="nv">pride</span><span class="o">=</span><span class="s1">$&#39;\n  gem \&#39;minitest\&#39;, require: \&#39;minitest/pride\&#39;&#39;</span>
       <span class="nb">shift</span>;;
     -*<span class="o">)</span>
       <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
