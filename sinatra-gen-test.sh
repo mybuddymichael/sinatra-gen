@@ -79,6 +79,12 @@ it_creates_a_procfile() {
    check $file bundle
 }
 
+it_creates_a_guardfile() {
+  sinatra-gen foo
+  file=foo/Guardfile
+  check $file guard
+}
+
 it_creates_a_config_ru_file() {
   sinatra-gen foo
   file=foo/config.ru

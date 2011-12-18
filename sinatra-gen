@@ -113,6 +113,14 @@ web: bundle exec ruby app.rb -p \$PORT
 PROCFILE
 }
 
+guardfile() {
+  cat << GUARDFILE
+guard 'livereload' do
+  watch(%r{.+\.(rb|mustache|sass|coffee)})
+end
+GUARDFILE
+}
+
 # `foo/config.ru`
 config_ru() {
   cat << CONFIG
@@ -325,6 +333,7 @@ create_project() {
   create app_rb          $1/app.rb
   create gemfile         $1/Gemfile
   create procfile        $1/Procfile
+  create guardfile       $1/Guardfile
   create config_ru       $1/config.ru
   create layout_rb       $1/views/layout.rb
   create layout_mustache $1/templates/layout.mustache
