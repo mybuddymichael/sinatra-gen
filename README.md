@@ -7,8 +7,8 @@ project.
 ![sinatra-gen in zsh](http://dl.dropbox.com/u/2827486/sinatra-gen.png)
 
 I noticed that I was constantly repeating the same steps to create new [Sinatra]
-projects, so I created this to automate the task. It uses Mustache for
-templates, Scss for CSS preprocessing, and CoffeeScript for JavaScript
+projects, so I created this to automate the task. It uses [Mustache] for
+templates, [SCSS] for CSS preprocessing, and [CoffeeScript] for JavaScript
 preprocessing. It's very specific, but contributions are welcome to improve
 and/or generalize functionality.
 
@@ -24,4 +24,7 @@ Copyright © 2011 Michael Hanson; licensed under the MIT License.
 
 
 [Sinatra]: http://www.sinatrarb.com/
+[Mustache]: http://mustache.github.com/
+[SCSS]: http://sass-lang.com/
+[CoffeeScript]: http://coffeescript.org/
 [roundup]: https://github.com/bmizerany/roundup
