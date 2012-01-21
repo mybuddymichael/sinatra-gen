@@ -12,7 +12,7 @@ set -e
 # The string of help text, displayed if `-h` or `--help` are flagged or if
 # `sinatra-gen` is called without any arguments.
 help() {
-  cat << HELP
+  cat <<HELP
 
   Usage: sinatra-gen [<options>] [<project-name>]
 
@@ -34,7 +34,7 @@ HELP
 
 # `foo/app.rb`
 app_rb() {
-  cat << APP
+  cat <<APP
 require 'bundler/setup'
 Bundler.require
 
@@ -81,7 +81,7 @@ APP
 
 # `foo/Gemfile`
 gemfile() {
-  cat << GEMFILE
+  cat <<GEMFILE
 source 'http://rubygems.org'
 
 gem 'sinatra', require: 'sinatra/base'
@@ -110,13 +110,13 @@ GEMFILE
 
 # `foo/Procfile`
 procfile() {
-  cat << PROCFILE
+  cat <<PROCFILE
 web: bundle exec ruby app.rb -p \$PORT
 PROCFILE
 }
 
 guardfile() {
-  cat << GUARDFILE
+  cat <<GUARDFILE
 guard 'livereload' do
   watch(%r{.+\.(rb|mustache|sass|coffee)})
 end
@@ -125,7 +125,7 @@ GUARDFILE
 
 # `foo/config.ru`
 config_ru() {
-  cat << CONFIG
+  cat <<CONFIG
 require './app.rb'
 run App
 CONFIG
@@ -133,7 +133,7 @@ CONFIG
 
 # `foo/views/layout.rb`
 layout_rb() {
-  cat << LAYOUT
+  cat <<LAYOUT
 class App
   module Views
     class Layout < Mustache
@@ -158,7 +158,7 @@ LAYOUT
 
 # `foo/templates/layout.mustache`
 layout_mustache() {
-  cat << LAYOUT
+  cat <<LAYOUT
 <!doctype html>
 <html>
   <head>
@@ -176,7 +176,7 @@ LAYOUT
 
 # `foo/views/index.rb`
 index_rb() {
-  cat << INDEX
+  cat <<INDEX
 class App
   module Views
     class Index < Layout
@@ -188,14 +188,14 @@ INDEX
 
 # `foo/templates/index.mustache`
 index_mustache() {
-  cat << INDEX
+  cat <<INDEX
 <p>Hi, world!</p>
 INDEX
 }
 
 # `foo/styles/reset.scss`
 reset_scss() {
-  cat << RESET
+  cat <<RESET
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -243,13 +243,13 @@ RESET
 
 # `foo/scripts/main.coffee`
 main_coffee() {
-  cat << MAIN
+  cat <<MAIN
 MAIN
 }
 
 # `foo/test/test_helper.rb`
 test_helper() {
-  cat << HELPER
+  cat <<HELPER
 require_relative '../app'
 Bundler.require :test
 
@@ -267,13 +267,13 @@ HELPER
 
 # `foo/test/routes_test.rb`
 routes_test() {
-  cat << ROUTES
+  cat <<ROUTES
 require_relative 'test_helper'
 
 class RoutesTest < App::Test
 
   include Rack::Test::Methods
-  
+
   def app
     App
   end
